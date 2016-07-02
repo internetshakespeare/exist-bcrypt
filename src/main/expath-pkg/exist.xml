@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://exist-db.org/ns/expath-pkg">
+    <jar>exist-bcrypt.jar</jar>
+    <java>
+        <namespace>http://max.terpstra.ca/ns/exist-bcrypt</namespace>
+        <class>ca.terpstra.max.exist_bcrypt.BCryptModule</class>
+    </java>
+</package>

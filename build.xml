@@ -3,6 +3,7 @@
 	<property name="dist.dir" value="dist"/>
 	<property name="src.dir" value="src"/>
 	<property name="java.src.dir" value="${src.dir}/main/java"/>
+	<property name="test.src.dir" value="${src.dir}/test/java"/>
 	<property name="package.src.dir" value="${src.dir}/main/expath-pkg"/>
 	<property name="lib.dir" value="lib"/>
 	<property name="build.dir" value="build"/>
@@ -33,6 +34,22 @@
 	<target name="compile" depends="dependencies">
 		<mkdir dir="${java.build.dir}"/>
 		<javac srcdir="${java.src.dir}" destdir="${java.build.dir}" classpathref="classpath"/>
+	</target>
+
+	<target name="compile-test" depends="compile">
+		<javac srcdir="${test.src.dir}" destdir="${java.build.dir}"/>
+	</target>
+	<target name="test" depends="compile-test">
+		<junit printsummary="on" showoutput="on" failureproperty="test-fail">
+			<classpath>
+				<pathelement path="${java.build.dir}"/>
+				<path refid="classpath"/>
+			</classpath>
+			<batchtest>
+				<fileset dir="${test.src.dir}" includes="**/*.java"/>
+			</batchtest>
+		</junit>
+		<fail if="test-fail"/>
 	</target>
 
 	<target name="jar" depends="compile">

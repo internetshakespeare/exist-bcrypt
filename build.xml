@@ -1,7 +1,5 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="jwt" default="xar">
+<project name="exist-bcrypt" default="xar">
 	
-	<property name="project" value="exist-bcrypt"/>
-
 	<property name="dist.dir" value="dist"/>
 	<property name="src.dir" value="src"/>
 	<property name="java.src.dir" value="${src.dir}/main/java"/>
@@ -39,13 +37,13 @@
 
 	<target name="jar" depends="compile">
 		<mkdir dir="${dist.dir}"/>
-		<jar basedir="${java.build.dir}" destfile="${dist.dir}/${project}.jar"/>
+		<jar basedir="${java.build.dir}" destfile="${dist.dir}/${ant.project.name}.jar"/>
 	</target>
 	
 	<target name="xar" depends="jar">
-		<zip destfile="${dist.dir}/${project}.xar">
+		<zip destfile="${dist.dir}/${ant.project.name}.xar">
 			<zipfileset dir="${package.src.dir}"/>
-			<zipfileset dir="${dist.dir}" includes="${project}.jar" prefix="content"/>
+			<zipfileset dir="${dist.dir}" includes="${ant.project.name}.jar" prefix="content"/>
 		</zip>
 	</target>
 	<target name="dist" depends="xar"/>

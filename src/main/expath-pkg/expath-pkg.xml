@@ -5,4 +5,5 @@
     version="0.1"
 >
     <title>BCrypt password hashing module</title>
+    <dependency processor="eXist-db"/>
 </package>
